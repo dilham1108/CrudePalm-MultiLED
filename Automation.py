@@ -47,9 +47,10 @@ def turnOn():
     start_read = None
     res = 0
     run = True
+    cap = cv2.VideoCapture(1)
 
-    fraksi_dic = {'1': 'MENTAH', '2': 'MATANG'}
-    skenario_dic = {'1': 'D', '2': 'B'}
+#     fraksi_dic = {'1': 'MENTAH', '2': 'MATANG'}
+#     skenario_dic = {'1': 'D', '2': 'B'}
     responses = {}    # sampel = 0
 
     sampel = datetime.now().strftime("sampel_%d-%m-%y-%H:%M:%S")
@@ -68,7 +69,10 @@ def turnOn():
 
         if kwargs_rest['key_input'] == ord('q'):
             break 
-
+	# webcam 
+	ret, frame = cap.read()
+	cv2.imshow('webcam', frame)
+	# camera
         output_image = my_callback.image
         # output_image = cv2.resize(output_image, (1024, 540))
         if output_image is not None:
